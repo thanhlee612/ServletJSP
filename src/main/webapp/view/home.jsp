@@ -41,7 +41,7 @@
                 </c:forEach> 
 
             </table> 
-            <a href="view/Insert.jsp">Add student</a>            
+            <a href="add">Add student</a>            
         </div>
 
         <script>

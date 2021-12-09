@@ -13,7 +13,11 @@
     </head>
     <body>
          <form action="add" method="post" >
-            <table>                
+            <table> 
+                 <tr>
+                    <td>ID</td>                    
+                    <td><input type="text" name="id" /><td>                   
+                </tr>
                  <tr>
                     <td>Name</td>                    
                     <td><input type="text" name="name" /><td>                   

@@ -24,6 +24,21 @@ public class studentDAO {
     PreparedStatement statement = null;
     ResultSet resultSet = null;
 
+    public  void Dongkn() {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException ex) {
+        }
+    }
+
     public List<listStudent> getfindAll() {
         List<listStudent> result = new ArrayList<>();
         String sql = "select* from student1";
@@ -43,19 +58,7 @@ public class studentDAO {
             } catch (SQLException ex) {
                 return null;
             } finally {
-                try {
-                    if (connection != null) {
-                        connection.close();
-                    }
-                    if (statement != null) {
-                        statement.close();
-                    }
-                    if (resultSet != null) {
-                        resultSet.close();
-                    }
-                } catch (SQLException ex) {
-                    return null;
-                }
+                Dongkn();
             }
         }
         return null;
@@ -68,22 +71,10 @@ public class studentDAO {
             statement = connection.prepareStatement(sql);
             statement.setString(1, id);
             statement.executeUpdate();
-           
+
         } catch (SQLException e) {
         } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException ex) {
-
-            }
+            Dongkn();
         }
     }
 
@@ -95,19 +86,7 @@ public class studentDAO {
             statement.executeUpdate();
         } catch (SQLException e) {
         } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException ex) {
-
-            }
+           Dongkn();
         }
     }
 
@@ -116,27 +95,18 @@ public class studentDAO {
         try {
             connection = getConnection();
             statement = connection.prepareStatement(sql);
-            statement.setString(1, id);
+            statement.setString(1, null);
             statement.setString(2, name);
             statement.setString(3, address);
-            statement.executeUpdate();
-            int resultSet = statement.executeUpdate();
-            System.out.println(resultSet);
+            statement.executeUpdate();         
         } catch (SQLException ex) {
         } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException ex) {
-            }
+           Dongkn();
         }
+    }
+    public static void main(String[] args) {
+        studentDAO dao = new studentDAO();
+        dao.InsertStudent("10","csd", "b");
     }
 
     public listStudent getStudentbyID(String id) {
@@ -156,19 +126,7 @@ public class studentDAO {
             }
         } catch (SQLException e) {
         } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException ex) {
-
-            }
+          Dongkn();
         }
         return null;
     }
@@ -185,24 +143,8 @@ public class studentDAO {
 
         } catch (SQLException ex) {
         } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException ex) {
-
-            }
+           Dongkn();
         }
 
-    }
-    public static void main(String[] args) {
-        studentDAO dao = new studentDAO();
-        dao.InsertStudent(null,"hello", "HowAreYou");
     }
 }

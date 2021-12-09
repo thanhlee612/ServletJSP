@@ -29,17 +29,14 @@ public class InsertControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String namestu = request.getParameter("name");
-        String addressstu = request.getParameter("address");
-        studentDAO dao = new studentDAO();
-        dao.InsertStudent(null, namestu, addressstu);
-        response.sendRedirect("trang-chu");
+       request.getRequestDispatcher("view/Insert.jsp").forward(request, response);
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //String idstu = request.getParameter("id");
+       // String idstu = request.getParameter("id");
         String namestu = request.getParameter("name");
         String addressstu = request.getParameter("address");
         studentDAO dao = new studentDAO();
